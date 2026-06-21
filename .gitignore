@@ -1,7 +1,10 @@
 backend/venv/
-terraform/.terraform/
-*.tfstate
-*.tfstate.backup
-*.lock.hcl
 __pycache__/
 
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+*.tfstate
+*.tfstate.backup
+
+.vscode/
+*.log
