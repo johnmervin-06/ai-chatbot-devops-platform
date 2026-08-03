@@ -1,4 +1,4 @@
-#!/home/grimm/Desktop/ai-chatbot-devops/backend/venv/bin/python3
+#!/home/grimjow/Desktop/ai-chatbot-devops-platform/backend/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
