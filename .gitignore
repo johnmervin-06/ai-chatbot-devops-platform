@@ -1,10 +1,26 @@
+# Python virtual environments
+venv/
+.venv/
 backend/venv/
-__pycache__/
 
+# Python cache files
+__pycache__/
+*.pyc
+
+# Secret environment and API key files
+.env
+.env.*
+*.env
+
+# Terraform files
 terraform/.terraform/
 terraform/.terraform.lock.hcl
 *.tfstate
 *.tfstate.backup
+terraform/terraform.tfvars
 
+# VS Code settings
 .vscode/
+
+# Log files
 *.log

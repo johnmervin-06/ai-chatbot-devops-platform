@@ -1,0 +1,3040 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>M3 AI</title>
+
+<style>
+
+/* ================================
+   GLOBAL
+================================ */
+
+* {
+
+    box-sizing: border-box;
+
+    margin: 0;
+
+    padding: 0;
+
+}
+
+
+:root {
+
+    --background:
+
+    #06110a;
+
+
+    --sidebar:
+
+    #08170d;
+
+
+    --panel:
+
+    #0b1d11;
+
+
+    --panel-light:
+
+    #102817;
+
+
+    --border:
+
+    rgba(
+        104,
+        255,
+        173,
+        0.16
+    );
+
+
+    --green:
+
+    #3cff8f;
+
+
+    --green-light:
+
+    #8affba;
+
+
+    --green-dark:
+
+    #159b55;
+
+
+    --text:
+
+    #e7fff0;
+
+
+    --muted:
+
+    #83a891;
+
+
+    --user:
+
+    #163a25;
+
+}
+
+
+html,
+
+body {
+
+    width: 100%;
+
+    height: 100%;
+
+    overflow: hidden;
+
+}
+
+
+body {
+
+    font-family:
+
+    Arial,
+
+    Helvetica,
+
+    sans-serif;
+
+
+    color:
+
+    var(--text);
+
+
+    background:
+
+    radial-gradient(
+
+        circle at top,
+
+        #123d23 0,
+
+        #07130b 42%,
+
+        #030804 100%
+
+    );
+
+}
+
+
+/* ================================
+   APP
+================================ */
+
+.app {
+
+    display: flex;
+
+    width: 100vw;
+
+    height: 100vh;
+
+    overflow: hidden;
+
+}
+
+
+/* ================================
+   SIDEBAR
+================================ */
+
+.sidebar {
+
+    display: flex;
+
+    flex-direction: column;
+
+    width: 275px;
+
+    min-width: 275px;
+
+    height: 100vh;
+
+    padding: 16px;
+
+    background:
+
+    linear-gradient(
+
+        180deg,
+
+        rgba(
+            8,
+            23,
+            13,
+            0.98
+        ),
+
+        rgba(
+            3,
+            12,
+            7,
+            0.98
+        )
+
+    );
+
+    border-right:
+
+    1px solid
+
+    var(--border);
+
+}
+
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    padding:
+
+    8px 7px
+
+    18px;
+
+}
+
+
+.brand-icon {
+
+    display: grid;
+
+    place-items: center;
+
+    width: 43px;
+
+    height: 43px;
+
+    border-radius: 13px;
+
+    color:
+
+    #031109;
+
+    font-weight: 900;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #8affba,
+
+        #20c96a
+
+    );
+
+    box-shadow:
+
+    0 0 28px
+
+    rgba(
+        55,
+        255,
+        135,
+        0.25
+    );
+
+}
+
+
+.brand-text h1 {
+
+    font-size: 19px;
+
+    letter-spacing: 1px;
+
+}
+
+
+.brand-text p {
+
+    margin-top: 3px;
+
+    color:
+
+    var(--muted);
+
+    font-size: 11px;
+
+}
+
+
+.new-chat {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    width: 100%;
+
+    padding: 14px;
+
+    border:
+
+    1px solid
+
+    rgba(
+        105,
+        255,
+        173,
+        0.28
+    );
+
+    border-radius: 15px;
+
+    color:
+
+    var(--text);
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    background:
+
+    rgba(
+        20,
+        55,
+        32,
+        0.5
+    );
+
+    transition:
+
+    0.2s;
+
+}
+
+
+.new-chat:hover {
+
+    transform:
+
+    translateY(
+        -1px
+    );
+
+    border-color:
+
+    var(--green);
+
+    background:
+
+    rgba(
+        33,
+        110,
+        59,
+        0.45
+    );
+
+}
+
+
+.history-title {
+
+    margin:
+
+    26px 10px
+
+    11px;
+
+    color:
+
+    #71917d;
+
+    font-size: 10px;
+
+    letter-spacing: 1.2px;
+
+}
+
+
+.history {
+
+    flex: 1;
+
+    overflow-y: auto;
+
+}
+
+
+.history-item {
+
+    width: 100%;
+
+    padding:
+
+    12px
+
+    13px;
+
+    margin-bottom: 6px;
+
+    overflow: hidden;
+
+    border-radius: 11px;
+
+    color:
+
+    #b9d0c1;
+
+    font-size: 13px;
+
+    text-overflow:
+
+    ellipsis;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+
+    0.2s;
+
+}
+
+
+.history-item:hover {
+
+    color:
+
+    white;
+
+    background:
+
+    rgba(
+        65,
+        160,
+        95,
+        0.14
+    );
+
+}
+
+
+.sidebar-bottom {
+
+    padding-top: 16px;
+
+    border-top:
+
+    1px solid
+
+    var(--border);
+
+}
+
+
+.profile {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 10px;
+
+}
+
+
+.profile-avatar {
+
+    display: grid;
+
+    place-items: center;
+
+    width: 38px;
+
+    height: 38px;
+
+    border-radius: 12px;
+
+    color:
+
+    #04200f;
+
+    font-weight: 900;
+
+    background:
+
+    var(--green);
+
+}
+
+
+.profile-name {
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+.profile-status {
+
+    margin-top: 4px;
+
+    color:
+
+    var(--muted);
+
+    font-size: 10px;
+
+}
+
+
+/* ================================
+   MAIN CHAT
+================================ */
+
+.main {
+
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    flex: 1;
+
+    min-width: 0;
+
+    height: 100vh;
+
+    overflow: hidden;
+
+}
+
+
+.header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    min-height: 72px;
+
+    padding:
+
+    0 27px;
+
+    border-bottom:
+
+    1px solid
+
+    var(--border);
+
+    background:
+
+    rgba(
+        5,
+        16,
+        9,
+        0.72
+    );
+
+    backdrop-filter:
+
+    blur(
+        18px
+    );
+
+}
+
+
+.header-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+}
+
+
+.mobile-menu {
+
+    display: none;
+
+    border: none;
+
+    color:
+
+    var(--text);
+
+    font-size: 21px;
+
+    cursor: pointer;
+
+    background:
+
+    transparent;
+
+}
+
+
+.header-name {
+
+    font-size: 17px;
+
+    font-weight: 800;
+
+}
+
+
+.online {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    color:
+
+    var(--green);
+
+    font-size: 11px;
+
+}
+
+
+.online-dot {
+
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background:
+
+    var(--green);
+
+    box-shadow:
+
+    0 0 10px
+
+    var(--green);
+
+}
+
+
+.header-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    color:
+
+    var(--muted);
+
+    font-size: 12px;
+
+}
+
+
+/* ================================
+   CHAT AREA
+================================ */
+
+.chat {
+
+    flex: 1;
+
+    overflow-y: auto;
+
+    scroll-behavior: smooth;
+
+}
+
+
+.chat-inner {
+
+    width: min(
+
+        900px,
+
+        100%
+
+    );
+
+    min-height: 100%;
+
+    margin: auto;
+
+    padding:
+
+    42px
+
+    25px
+
+    190px;
+
+}
+
+
+/* ================================
+   WELCOME
+================================ */
+
+.welcome {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 62vh;
+
+    text-align: center;
+
+}
+
+
+.welcome-logo {
+
+    display: grid;
+
+    place-items: center;
+
+    width: 88px;
+
+    height: 88px;
+
+    margin-bottom: 22px;
+
+    border-radius: 27px;
+
+    color:
+
+    #031109;
+
+    font-size: 27px;
+
+    font-weight: 1000;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #9cffc4,
+
+        #18ba61
+
+    );
+
+    box-shadow:
+
+    0 0 60px
+
+    rgba(
+        54,
+        255,
+        132,
+        0.28
+    );
+
+}
+
+
+.welcome h2 {
+
+    font-size:
+
+    clamp(
+
+        30px,
+
+        5vw,
+
+        49px
+
+    );
+
+    letter-spacing:
+
+    -1.5px;
+
+}
+
+
+.welcome p {
+
+    max-width: 560px;
+
+    margin-top: 15px;
+
+    color:
+
+    var(--muted);
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+}
+
+
+.suggestions {
+
+    display: grid;
+
+    grid-template-columns:
+
+    repeat(
+
+        2,
+
+        minmax(
+
+            0,
+
+            1fr
+
+        )
+
+    );
+
+    gap: 11px;
+
+    width: min(
+
+        650px,
+
+        100%
+
+    );
+
+    margin-top: 34px;
+
+}
+
+
+.suggestion {
+
+    padding: 17px;
+
+    border:
+
+    1px solid
+
+    var(--border);
+
+    border-radius: 17px;
+
+    color:
+
+    #c9e7d3;
+
+    text-align: left;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    cursor: pointer;
+
+    background:
+
+    rgba(
+        11,
+        34,
+        19,
+        0.68
+    );
+
+    transition:
+
+    0.2s;
+
+}
+
+
+.suggestion:hover {
+
+    transform:
+
+    translateY(
+        -3px
+    );
+
+    border-color:
+
+    rgba(
+        80,
+        255,
+        143,
+        0.52
+    );
+
+    background:
+
+    rgba(
+        18,
+        59,
+        31,
+        0.85
+    );
+
+}
+
+
+/* ================================
+   MESSAGES
+================================ */
+
+.message {
+
+    display: flex;
+
+    gap: 15px;
+
+    margin-bottom: 29px;
+
+    animation:
+
+    messageAppear
+
+    0.28s
+
+    ease;
+
+}
+
+
+@keyframes messageAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+
+        translateY(
+            10px
+        );
+
+    }
+
+
+    to {
+
+        opacity: 1;
+
+        transform:
+
+        translateY(
+            0
+        );
+
+    }
+
+}
+
+
+.avatar {
+
+    display: grid;
+
+    place-items: center;
+
+    flex-shrink: 0;
+
+    width: 40px;
+
+    height: 40px;
+
+    border-radius: 13px;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+}
+
+
+.ai-avatar {
+
+    color:
+
+    #031109;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #83ffb6,
+
+        #18a956
+
+    );
+
+    box-shadow:
+
+    0 0 18px
+
+    rgba(
+        52,
+        255,
+        131,
+        0.16
+    );
+
+}
+
+
+.user-avatar {
+
+    color:
+
+    #dbe9e0;
+
+    background:
+
+    #33433a;
+
+}
+
+
+.message-body {
+
+    min-width: 0;
+
+    max-width: 760px;
+
+}
+
+
+.message-name {
+
+    margin:
+
+    2px 0
+
+    8px;
+
+    color:
+
+    #a8c3b1;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+}
+
+
+.message-text {
+
+    color:
+
+    #e1eee5;
+
+    font-size: 15px;
+
+    line-height: 1.75;
+
+    white-space:
+
+    pre-wrap;
+
+    overflow-wrap:
+
+    anywhere;
+
+}
+
+
+.user-message {
+
+    flex-direction:
+
+    row-reverse;
+
+}
+
+
+.user-message .message-body {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+}
+
+
+.user-message .message-name {
+
+    color:
+
+    #81958a;
+
+}
+
+
+.user-message .message-text {
+
+    padding:
+
+    13px
+
+    17px;
+
+    border:
+
+    1px solid
+
+    rgba(
+        101,
+        255,
+        169,
+        0.13
+    );
+
+    border-radius:
+
+    19px
+
+    5px
+
+    19px
+
+    19px;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #173c26,
+
+        #102b1b
+
+    );
+
+}
+
+
+/* ================================
+   PIXEL CAT
+================================ */
+
+.pixel-cat-box {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    width: fit-content;
+
+    min-width: 230px;
+
+    padding:
+
+    12px
+
+    17px;
+
+    border:
+
+    1px solid
+
+    rgba(
+        92,
+        255,
+        156,
+        0.2
+    );
+
+    border-radius:
+
+    8px
+
+    20px
+
+    20px
+
+    20px;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        rgba(
+            10,
+            47,
+            25,
+            0.95
+        ),
+
+        rgba(
+            3,
+            18,
+            9,
+            0.95
+        )
+
+    );
+
+}
+
+
+.pixel-cat {
+
+    position: relative;
+
+    flex-shrink: 0;
+
+    width: 52px;
+
+    height: 47px;
+
+    animation:
+
+    catFloat
+
+    1.15s
+
+    infinite
+
+    ease-in-out;
+
+}
+
+
+.cat-head {
+
+    position: absolute;
+
+    left: 11px;
+
+    top: 9px;
+
+    width: 31px;
+
+    height: 27px;
+
+    border-radius:
+
+    5px
+
+    5px
+
+    10px
+
+    10px;
+
+    background:
+
+    #66ff9f;
+
+    box-shadow:
+
+    0 0 13px
+
+    rgba(
+        95,
+        255,
+        155,
+        0.5
+    );
+
+}
+
+
+.cat-ear-left {
+
+    position: absolute;
+
+    left: 10px;
+
+    top: 1px;
+
+    z-index: 2;
+
+    width: 13px;
+
+    height: 15px;
+
+    background:
+
+    #38ce70;
+
+    clip-path:
+
+    polygon(
+
+        0 100%,
+
+        15% 0,
+
+        100% 100%
+
+    );
+
+}
+
+
+.cat-ear-right {
+
+    position: absolute;
+
+    right: 10px;
+
+    top: 1px;
+
+    z-index: 2;
+
+    width: 13px;
+
+    height: 15px;
+
+    background:
+
+    #38ce70;
+
+    clip-path:
+
+    polygon(
+
+        0 100%,
+
+        85% 0,
+
+        100% 100%
+
+    );
+
+}
+
+
+.cat-eye-left,
+
+.cat-eye-right {
+
+    position: absolute;
+
+    z-index: 3;
+
+    top: 20px;
+
+    width: 5px;
+
+    height: 6px;
+
+    background:
+
+    #031209;
+
+}
+
+
+.cat-eye-left {
+
+    left: 19px;
+
+}
+
+
+.cat-eye-right {
+
+    right: 18px;
+
+}
+
+
+.cat-nose {
+
+    position: absolute;
+
+    z-index: 3;
+
+    left: 24px;
+
+    top: 28px;
+
+    width: 5px;
+
+    height: 4px;
+
+    background:
+
+    #0a4a2a;
+
+}
+
+
+.cat-tail {
+
+    position: absolute;
+
+    right: 0;
+
+    bottom: 5px;
+
+    width: 18px;
+
+    height: 21px;
+
+    border:
+
+    5px solid
+
+    #3bd878;
+
+    border-left:
+
+    none;
+
+    border-bottom:
+
+    none;
+
+    border-radius:
+
+    0
+
+    15px
+
+    0
+
+    0;
+
+    transform-origin:
+
+    bottom left;
+
+    animation:
+
+    tailWag
+
+    0.6s
+
+    infinite
+
+    ease-in-out;
+
+}
+
+
+.cat-text {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+}
+
+
+.cat-text strong {
+
+    color:
+
+    #dcffea;
+
+    font-size: 13px;
+
+}
+
+
+.cat-text span {
+
+    color:
+
+    #79ae8b;
+
+    font-size: 11px;
+
+}
+
+
+@keyframes catFloat {
+
+    0%,
+
+    100% {
+
+        transform:
+
+        translateY(
+            0
+        );
+
+    }
+
+
+    50% {
+
+        transform:
+
+        translateY(
+            -5px
+        );
+
+    }
+
+}
+
+
+@keyframes tailWag {
+
+    0%,
+
+    100% {
+
+        transform:
+
+        rotate(
+            -12deg
+        );
+
+    }
+
+
+    50% {
+
+        transform:
+
+        rotate(
+            30deg
+        );
+
+    }
+
+}
+
+
+/* ================================
+   INPUT
+================================ */
+
+.composer-area {
+
+    position: absolute;
+
+    right: 0;
+
+    bottom: 0;
+
+    left: 0;
+
+    padding:
+
+    20px
+
+    25px
+
+    22px;
+
+    background:
+
+    linear-gradient(
+
+        transparent,
+
+        rgba(
+            3,
+            10,
+            5,
+            0.96
+        )
+
+        35%
+
+    );
+
+}
+
+
+.composer {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 10px;
+
+    width: min(
+
+        780px,
+
+        100%
+
+    );
+
+    margin: auto;
+
+    padding:
+
+    9px
+
+    10px
+
+    9px
+
+    18px;
+
+    border:
+
+    1px solid
+
+    rgba(
+        102,
+        255,
+        170,
+        0.25
+    );
+
+    border-radius: 24px;
+
+    background:
+
+    rgba(
+        17,
+        39,
+        24,
+        0.97
+    );
+
+    box-shadow:
+
+    0 15px 55px
+
+    rgba(
+        0,
+        0,
+        0,
+        0.42
+    );
+
+}
+
+
+.composer:focus-within {
+
+    border-color:
+
+    rgba(
+        75,
+        255,
+        142,
+        0.65
+    );
+
+    box-shadow:
+
+    0 0 0 4px
+
+    rgba(
+        43,
+        255,
+        126,
+        0.07
+    );
+
+}
+
+
+#messageInput {
+
+    flex: 1;
+
+    min-height: 27px;
+
+    max-height: 140px;
+
+    padding:
+
+    8px
+
+    2px;
+
+    border: none;
+
+    outline: none;
+
+    resize: none;
+
+    color:
+
+    #ecfff3;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    background:
+
+    transparent;
+
+}
+
+
+#messageInput::placeholder {
+
+    color:
+
+    #6d8978;
+
+}
+
+
+.send-button {
+
+    display: grid;
+
+    place-items: center;
+
+    width: 43px;
+
+    height: 43px;
+
+    flex-shrink: 0;
+
+    border: none;
+
+    border-radius: 16px;
+
+    color:
+
+    #031109;
+
+    font-size: 19px;
+
+    cursor: pointer;
+
+    background:
+
+    var(--green);
+
+    transition:
+
+    0.2s;
+
+}
+
+
+.send-button:hover {
+
+    transform:
+
+    scale(
+        1.06
+    );
+
+    background:
+
+    #8affba;
+
+}
+
+
+.send-button:disabled {
+
+    opacity: 0.5;
+
+    cursor:
+
+    not-allowed;
+
+    transform:
+
+    none;
+
+}
+
+
+.disclaimer {
+
+    margin-top: 9px;
+
+    color:
+
+    #597264;
+
+    text-align: center;
+
+    font-size: 10px;
+
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (
+
+    max-width: 760px
+
+) {
+
+
+    .sidebar {
+
+        position: fixed;
+
+        z-index: 100;
+
+        left: -290px;
+
+        width: 275px;
+
+        transition:
+
+        left
+
+        0.25s
+
+        ease;
+
+        box-shadow:
+
+        30px 0 60px
+
+        rgba(
+            0,
+            0,
+            0,
+            0.5
+        );
+
+    }
+
+
+    .sidebar.open {
+
+        left: 0;
+
+    }
+
+
+    .mobile-menu {
+
+        display: block;
+
+    }
+
+
+    .header {
+
+        min-height: 62px;
+
+        padding:
+
+        0 16px;
+
+    }
+
+
+    .header-right {
+
+        display: none;
+
+    }
+
+
+    .chat-inner {
+
+        padding:
+
+        27px
+
+        15px
+
+        175px;
+
+    }
+
+
+    .welcome {
+
+        min-height: 58vh;
+
+    }
+
+
+    .welcome-logo {
+
+        width: 70px;
+
+        height: 70px;
+
+        border-radius: 22px;
+
+        font-size: 22px;
+
+    }
+
+
+    .welcome p {
+
+        font-size: 13px;
+
+    }
+
+
+    .suggestions {
+
+        grid-template-columns:
+
+        1fr;
+
+    }
+
+
+    .message {
+
+        gap: 10px;
+
+    }
+
+
+    .avatar {
+
+        width: 35px;
+
+        height: 35px;
+
+        border-radius: 11px;
+
+    }
+
+
+    .message-text {
+
+        font-size: 14px;
+
+    }
+
+
+    .composer-area {
+
+        padding:
+
+        12px
+
+        10px
+
+        15px;
+
+    }
+
+
+    .pixel-cat-box {
+
+        min-width: 0;
+
+    }
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+<!-- =========================
+     SIDEBAR
+========================= -->
+
+<aside
+class="sidebar"
+id="sidebar">
+
+
+<div class="brand">
+
+<div class="brand-icon">
+
+M3
+
+</div>
+
+
+<div class="brand-text">
+
+<h1>
+
+M3 AI
+
+</h1>
+
+<p>
+
+Your intelligent companion
+
+</p>
+
+</div>
+
+</div>
+
+
+<button
+class="new-chat"
+onclick="newChat()">
+
+<span>
+
+＋
+
+</span>
+
+New chat
+
+</button>
+
+
+<div class="history-title">
+
+CHAT HISTORY
+
+</div>
+
+
+<div
+class="history"
+id="history">
+
+<div class="history-item">
+
+M3 AI Conversation
+
+</div>
+
+</div>
+
+
+<div class="sidebar-bottom">
+
+<div class="profile">
+
+<div class="profile-avatar">
+
+YOU
+
+</div>
+
+
+<div>
+
+<div class="profile-name">
+
+M3 AI User
+
+</div>
+
+
+<div class="profile-status">
+
+Personal AI companion
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+</aside>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="main">
+
+
+<header class="header">
+
+
+<div class="header-left">
+
+
+<button
+class="mobile-menu"
+onclick="toggleMenu()">
+
+☰
+
+</button>
+
+
+<div class="header-name">
+
+M3 AI
+
+</div>
+
+
+<div class="online">
+
+<div class="online-dot"></div>
+
+Online
+
+</div>
+
+
+</div>
+
+
+<div class="header-right">
+
+Green Intelligence
+
+</div>
+
+
+</header>
+
+
+<div
+class="chat"
+id="chat">
+
+
+<div
+class="chat-inner"
+id="messages">
+
+
+<section
+class="welcome"
+id="welcome">
+
+
+<div class="welcome-logo">
+
+M3
+
+</div>
+
+
+<h2>
+
+How can M3 AI help?
+
+</h2>
+
+
+<p>
+
+Your friendly AI companion for questions,
+ideas, learning, conversations, and support.
+
+</p>
+
+
+<div class="suggestions">
+
+
+<button
+class="suggestion"
+onclick="useSuggestion(this)">
+
+Explain a difficult topic simply
+
+</button>
+
+
+<button
+class="suggestion"
+onclick="useSuggestion(this)">
+
+Help me create a project
+
+</button>
+
+
+<button
+class="suggestion"
+onclick="useSuggestion(this)">
+
+Give me some creative ideas
+
+</button>
+
+
+<button
+class="suggestion"
+onclick="useSuggestion(this)">
+
+I want someone friendly to talk to
+
+</button>
+
+
+</div>
+
+
+</section>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =========================
+     MESSAGE INPUT
+========================= -->
+
+<div class="composer-area">
+
+
+<div class="composer">
+
+
+<textarea
+id="messageInput"
+rows="1"
+placeholder="Message M3 AI..."
+onkeydown="handleKey(event)"
+oninput="resizeInput()"></textarea>
+
+
+<button
+class="send-button"
+id="sendButton"
+onclick="sendMessage()">
+
+↑
+
+</button>
+
+
+</div>
+
+
+<div class="disclaimer">
+
+M3 AI may make mistakes. Check important information.
+
+</div>
+
+
+</div>
+
+
+</main>
+
+
+</div>
+
+
+<script>
+
+
+/* ================================
+   ELEMENTS
+================================ */
+
+const chat =
+
+document.getElementById(
+    "chat"
+);
+
+
+const messages =
+
+document.getElementById(
+    "messages"
+);
+
+
+const input =
+
+document.getElementById(
+    "messageInput"
+);
+
+
+const sendButton =
+
+document.getElementById(
+    "sendButton"
+);
+
+
+const welcome =
+
+document.getElementById(
+    "welcome"
+);
+
+
+const sidebar =
+
+document.getElementById(
+    "sidebar"
+);
+
+
+let isGenerating = false;
+
+
+/* ================================
+   MOBILE MENU
+================================ */
+
+function toggleMenu() {
+
+    sidebar.classList.toggle(
+        "open"
+    );
+
+}
+
+
+/* ================================
+   AUTO RESIZE
+================================ */
+
+function resizeInput() {
+
+    input.style.height =
+
+    "auto";
+
+
+    input.style.height =
+
+    Math.min(
+
+        input.scrollHeight,
+
+        140
+
+    ) + "px";
+
+}
+
+
+/* ================================
+   ENTER TO SEND
+================================ */
+
+function handleKey(event) {
+
+
+    if (
+
+        event.key === "Enter"
+
+        &&
+
+        !event.shiftKey
+
+    ) {
+
+
+        event.preventDefault();
+
+
+        sendMessage();
+
+    }
+
+}
+
+
+/* ================================
+   SUGGESTION BUTTON
+================================ */
+
+function useSuggestion(button) {
+
+
+    input.value =
+
+    button.innerText;
+
+
+    resizeInput();
+
+
+    sendMessage();
+
+}
+
+
+/* ================================
+   ADD USER MESSAGE
+================================ */
+
+function addUserMessage(text) {
+
+
+    const message =
+
+    document.createElement(
+        "div"
+    );
+
+
+    message.className =
+
+    "message user-message";
+
+
+    message.innerHTML = `
+
+        <div class="avatar user-avatar">
+
+            YOU
+
+        </div>
+
+
+        <div class="message-body">
+
+
+            <div class="message-name">
+
+                You
+
+            </div>
+
+
+            <div class="message-text">
+
+            </div>
+
+
+        </div>
+
+    `;
+
+
+    message.querySelector(
+
+        ".message-text"
+
+    ).textContent = text;
+
+
+    messages.appendChild(
+
+        message
+
+    );
+
+
+    scrollToBottom();
+
+}
+
+
+/* ================================
+   ADD AI MESSAGE
+================================ */
+
+function addAIMessage(text) {
+
+
+    const message =
+
+    document.createElement(
+        "div"
+    );
+
+
+    message.className =
+
+    "message";
+
+
+    message.innerHTML = `
+
+        <div class="avatar ai-avatar">
+
+            M3
+
+        </div>
+
+
+        <div class="message-body">
+
+
+            <div class="message-name">
+
+                M3 AI
+
+            </div>
+
+
+            <div class="message-text">
+
+            </div>
+
+
+        </div>
+
+    `;
+
+
+    message.querySelector(
+
+        ".message-text"
+
+    ).textContent = text;
+
+
+    messages.appendChild(
+
+        message
+
+    );
+
+
+    scrollToBottom();
+
+}
+
+
+/* ================================
+   PIXEL CAT TYPING
+================================ */
+
+function addTyping() {
+
+
+    const message =
+
+    document.createElement(
+        "div"
+    );
+
+
+    message.className =
+
+    "message";
+
+
+    message.id =
+
+    "typingMessage";
+
+
+    message.innerHTML = `
+
+        <div class="avatar ai-avatar">
+
+            M3
+
+        </div>
+
+
+        <div class="message-body">
+
+
+            <div class="message-name">
+
+                M3 AI
+
+            </div>
+
+
+            <div class="pixel-cat-box">
+
+
+                <div class="pixel-cat">
+
+
+                    <div class="cat-ear-left"></div>
+
+
+                    <div class="cat-ear-right"></div>
+
+
+                    <div class="cat-head"></div>
+
+
+                    <div class="cat-eye-left"></div>
+
+
+                    <div class="cat-eye-right"></div>
+
+
+                    <div class="cat-nose"></div>
+
+
+                    <div class="cat-tail"></div>
+
+
+                </div>
+
+
+                <div class="cat-text">
+
+
+                    <strong>
+
+                        M3 AI is thinking
+
+                    </strong>
+
+
+                    <span>
+
+                        Your pixel companion is working...
+
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    `;
+
+
+    messages.appendChild(
+
+        message
+
+    );
+
+
+    scrollToBottom();
+
+}
+
+
+/* ================================
+   REMOVE PIXEL CAT
+================================ */
+
+function removeTyping() {
+
+
+    const typing =
+
+    document.getElementById(
+        "typingMessage"
+    );
+
+
+    if (
+
+        typing
+
+    ) {
+
+
+        typing.remove();
+
+    }
+
+}
+
+
+/* ================================
+   SCROLL
+================================ */
+
+function scrollToBottom() {
+
+
+    chat.scrollTo({
+
+        top:
+
+        chat.scrollHeight,
+
+        behavior:
+
+        "smooth"
+
+    });
+
+}
+
+
+/* ================================
+   SEND MESSAGE
+================================ */
+
+async function sendMessage() {
+
+
+    const text =
+
+    input.value.trim();
+
+
+    if (
+
+        !text
+
+        ||
+
+        isGenerating
+
+    ) {
+
+        return;
+
+    }
+
+
+    isGenerating = true;
+
+
+    sendButton.disabled = true;
+
+
+    input.value = "";
+
+
+    input.style.height =
+
+    "auto";
+
+
+    if (
+
+        welcome
+
+        &&
+
+        welcome.style.display !== "none"
+
+    ) {
+
+
+        welcome.style.display =
+
+        "none";
+
+    }
+
+
+    sidebar.classList.remove(
+
+        "open"
+
+    );
+
+
+    addUserMessage(
+
+        text
+
+    );
+
+
+    addTyping();
+
+
+    try {
+
+
+        const response =
+
+        await fetch(
+
+            "/chat",
+
+            {
+
+                method:
+
+                "POST",
+
+
+                headers: {
+
+                    "Content-Type":
+
+                    "application/json"
+
+                },
+
+
+                body:
+
+                JSON.stringify({
+
+                    message:
+
+                    text
+
+                })
+
+            }
+
+        );
+
+
+        const data =
+
+        await response.json();
+
+
+        removeTyping();
+
+
+        if (
+
+            !response.ok
+
+        ) {
+
+
+            throw new Error(
+
+                data.error
+
+                ||
+
+                "Server error"
+
+            );
+
+        }
+
+
+        const answer =
+
+        data.response
+
+        ||
+
+        data.reply
+
+        ||
+
+        "I received your message, but I could not generate a response.";
+
+
+        addAIMessage(
+
+            answer
+
+        );
+
+
+    }
+
+    catch (
+
+        error
+
+    ) {
+
+
+        removeTyping();
+
+
+        addAIMessage(
+
+            "⚠️ I could not connect to the M3 AI server. Please make sure Flask is running and try again."
+
+        );
+
+
+        console.error(
+
+            error
+
+        );
+
+    }
+
+
+    finally {
+
+
+        isGenerating = false;
+
+
+        sendButton.disabled = false;
+
+
+        input.focus();
+
+    }
+
+}
+
+
+/* ================================
+   NEW CHAT
+================================ */
+
+function newChat() {
+
+
+    messages.innerHTML = `
+
+        <section
+        class="welcome"
+        id="welcome">
+
+
+            <div class="welcome-logo">
+
+                M3
+
+            </div>
+
+
+            <h2>
+
+                How can M3 AI help?
+
+            </h2>
+
+
+            <p>
+
+                Your friendly AI companion for questions,
+                ideas, learning, conversations, and support.
+
+            </p>
+
+
+            <div class="suggestions">
+
+
+                <button
+                class="suggestion"
+                onclick="useSuggestion(this)">
+
+                    Explain a difficult topic simply
+
+                </button>
+
+
+                <button
+                class="suggestion"
+                onclick="useSuggestion(this)">
+
+                    Help me create a project
+
+                </button>
+
+
+                <button
+                class="suggestion"
+                onclick="useSuggestion(this)">
+
+                    Give me some creative ideas
+
+                </button>
+
+
+                <button
+                class="suggestion"
+                onclick="useSuggestion(this)">
+
+                    I want someone friendly to talk to
+
+                </button>
+
+
+            </div>
+
+
+        </section>
+
+    `;
+
+
+    input.focus();
+
+
+    sidebar.classList.remove(
+
+        "open"
+
+    );
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
