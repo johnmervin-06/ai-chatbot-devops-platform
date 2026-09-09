@@ -62,11 +62,17 @@ pipeline {
             }
         }
 
-        stage('Deploy to Kubernetes') {
+                stage('Deploy to Kubernetes') {
             steps {
-                sh """
-                    kubectl set image deployment/chatbot chatbot=\$DOCKER_USER/${IMAGE_NAME}:${IMAGE_TAG}
-                """
+                withCredentials([usernamePassword(
+                    credentialsId: 'dockerhub-creds',
+                    usernameVariable: 'DOCKER_USER',
+                    passwordVariable: 'DOCKER_PASS'
+                )]) {
+                    sh """
+                        kubectl set image deployment/chatbot chatbot=\$DOCKER_USER/${IMAGE_NAME}:${IMAGE_TAG}
+                    """
+                }
             }
         }
     }
