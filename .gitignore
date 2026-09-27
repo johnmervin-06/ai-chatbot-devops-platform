@@ -24,3 +24,4 @@ terraform/terraform.tfvars
 
 # Log files
 *.log
+trivy-report.txt
