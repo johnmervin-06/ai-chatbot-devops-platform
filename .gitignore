@@ -17,9 +17,11 @@ terraform/.terraform/
 terraform/.terraform.lock.hcl
 *.tfstate
 *.tfstate.backup
+terraform/terraform.tfvars
 
 # VS Code settings
 .vscode/
 
 # Log files
 *.log
+trivy-report.txt

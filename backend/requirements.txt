@@ -1,6 +1,4 @@
-Flask
-flask-cors
-gunicorn
-openai
-tavily-python
-python-dotenv
+Flask==3.0.3
+flask-cors==4.0.1
+gunicorn==22.0.0
+ollama==0.3.3
