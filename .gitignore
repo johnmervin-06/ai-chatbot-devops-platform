@@ -25,3 +25,20 @@ terraform/terraform.tfvars
 # Log files
 *.log
 trivy-report.txt
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment Variables & Secrets
+.env
+*.env.local
+
+# OS Artifacts
+.DS_Store
+Thumbs.db
